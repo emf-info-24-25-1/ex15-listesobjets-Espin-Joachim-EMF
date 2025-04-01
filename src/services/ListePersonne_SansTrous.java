@@ -9,28 +9,62 @@ public class ListePersonne_SansTrous {
     private Personne[] personnes;
     private int nbPersonnes;
 
-    public ListePersonne_SansTrous() {
-        // A faire !
+    public ListePersonne_SansTrous(){
+       this.personnes = new Personne[NBRE_MAX_PERSONNES] ;
+       this.nbPersonnes = 0;
     }
 
     public int getNombre() {
-        // A faire !
+        return nbPersonnes;
     }
 
     public void vider() {
-        // A faire !
+        for (int i = 0; i < personnes.length; i++) {
+            if (personnes[i] != null) {
+                personnes[i] = null;
+                nbPersonnes--;
+            }
+        }
     }
 
     public boolean ajouter(Personne p) {
-        // A faire !
+        boolean ajoutReussi = false;
+        for (int i = 0; i < personnes.length; i++) {
+            if (personnes[i] == null) {
+                personnes[i] = p;
+                ajoutReussi = true;
+                nbPersonnes++;
+                break;
+            }
+            else {
+                ajoutReussi = false;
+            }
+        }
+        return ajoutReussi;
     }
 
     public boolean supprimer(Personne p) {
-        // A faire !
+        Boolean supprimerPersonne = false;
+        for (int i = 0; i < personnes.length; i++) {
+            if (personnes[i] == p) {
+                personnes[i] = null;
+                nbPersonnes--;
+                for (int j = i; j < personnes.length - 1; j++) {
+                    personnes[j] = personnes[j + 1];
+                }
+                personnes[personnes.length - 1] = null;
+                supprimerPersonne = true;
+                break;
+            }
+
+        }
+        return supprimerPersonne;
     }
 
     public void afficher() {
-        // A faire !
+        for (int i = 0; i < personnes.length; i++) {
+            System.out.println(personnes[i]);
+        }
     }
 
 }
